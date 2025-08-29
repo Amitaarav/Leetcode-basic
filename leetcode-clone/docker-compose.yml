@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  server:
+    build:
+      context: ./backend
+      dockerfile: docker/Dockerfile.backend
+    container_name: backend_server
+    ports:
+      - "4000:3000"
+    depends_on:
+      - redis
+
+  worker:
+    build:
+      context: ./worker
+      dockerfile: docker/Dockerfile.worker
+    container_name: worker
+    depends_on:
+      - redis
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: docker/Dockerfile.fe
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    ports:
+      - "6379:6379"

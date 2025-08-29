@@ -1,4 +1,4 @@
-import { createClient, RedisClientType } from "redis";
+import { createClient, type RedisClientType } from "redis";
 
 export const redisClient: RedisClientType = createClient({
   socket: { host: "localhost", port: 6379 },

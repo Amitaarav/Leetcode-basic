@@ -1,10 +1,10 @@
-import { spawn, ChildProcessWithoutNullStreams } from "child_process";
+import { spawn, type ChildProcessWithoutNullStreams } from "child_process";
 import fs from "fs";
 import os from "os";
 import path from "path";
 
-import { redisClient } from "../config/redis";
-import { Submission, ExecutionResult } from "../types/type";
+import { redisClient } from "../config/redis.js";
+import type{ Submission, ExecutionResult } from "../types/type.js";
 
 const BANNED_TOKENS = [
   "import os", "import sys", "subprocess", "open(", "exec(", "eval(",
