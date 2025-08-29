@@ -1,6 +1,6 @@
 import { connectRedis, redisClient } from "./config/redis.js";
 import { executePythonCode} from "./services/codeExecuterService.js";
-import { submission } from "./types/type.js";
+import type{ Submission } from "./types/type.js";
 async function startWorker() {
   await connectRedis();
   console.log("Worker started. Waiting for jobs...");
@@ -21,14 +21,13 @@ async function startWorker() {
   }
 }
 
-// Handle graceful shutdown
+
 process.on("SIGINT", async () => {
   console.log("Shutting down worker...");
   await redisClient.quit();
   process.exit(0);
 });
 
-// Handle graceful shutdown
 process.on("SIGTERM", async () => {
   console.log("Shutting down worker...");
   await redisClient.quit();
