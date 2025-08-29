@@ -56,43 +56,44 @@ Make sure Redis is installed and running on `localhost:6379`.
 
 ```bash
 redis-server
-2️⃣ Start Backend
-bash
-Copy code
+## Start Backend
+```
 cd backend
 npm install
 npm run dev
+```
 Backend runs on http://localhost:4000
 
-3️⃣ Start Worker
-bash
-Copy code
+##  Start Worker
+```
 cd worker
 npm install
 npm run dev
-4️⃣ Start Frontend
-bash
-Copy code
+
+```
+## Start Frontend
+```
 cd frontend
 npm install
 npm run dev
+```
 Frontend runs on http://localhost:3000
 
-🐳 Run with Docker
-1️⃣ Build & Start Services
+Run with Docker
+Build & Start Services
 From root directory:
 
 ```
 docker compose up -d --build
 ```
-2️⃣ Access Services
+ Access Services
 Frontend → http://localhost:3000
 
 Backend → http://localhost:4000
 
 Redis → localhost:6379
 
-3️⃣ Stop Services
+Stop Services
 ```
 docker compose down
 ```
