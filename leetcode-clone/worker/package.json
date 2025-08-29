@@ -11,7 +11,6 @@
     "start:worker": "node dist/worker.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,6 +19,7 @@
     "redis": "^5.8.2"
   },
   "devDependencies": {
-    "@types/node": "^24.3.0"
+    "@types/node": "^24.3.0",
+    "typescript": "^5.9.2"
   }
 }

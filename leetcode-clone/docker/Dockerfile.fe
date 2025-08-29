@@ -1,4 +1,5 @@
-FROM node:24-alpine3.21
+# ---- Build Stage ----
+FROM node:24-alpine3.21 AS builder
 
 WORKDIR /app
 
@@ -7,14 +8,20 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
+# Build Next.js app (outputs .next folder)
 RUN npm run build
+
+# ---- Runtime Stage ----
+FROM node:24-alpine3.21
 
 WORKDIR /app
 ENV NODE_ENV=production
 
+# Copy only the standalone build + static assets
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/package*.json ./
 
 EXPOSE 3000
 

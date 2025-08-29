@@ -7,12 +7,11 @@ It is built using a **microservices-inspired architecture** with **Next.js (fron
 
 ## Features
 - **Code Editor** (frontend built with Next.js 15)
-- **Real-time Streaming** of execution logs using **Socket.IO**
+- **Real-time Streaming** of execution logs using **Native Websocket**
 - **Job Queue** powered by **Redis**
 - **Worker Service** executes jobs from the queue
 - **Submission History** stored in frontend state
 - **Dockerized Setup** for easy deployment
-
 ---
 
 ## Architecture
