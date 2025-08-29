@@ -5,7 +5,7 @@ import CodeEditor from '@/components/CodeEditor';
 import OutputPanel from '@/components/OutputPanel';
 import HistoryPanel from '@/components/HistoryPanel';
 import { ExecutionResult, HistoryItem } from '@/types/executions';
-import {Navbar} from "@/components/Navbar";
+import Navbar from "@/components/Navbar";
 export default function Home() {
   const [code, setCode] = useState(`# Write your Python code here
 print("Hello, World!")
