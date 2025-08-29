@@ -4,10 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "ts-node src/server.ts",
+    "dev": "ts-node src/worker.ts",
     "worker": "ts-node src/worker.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/worker.js",
     "start:worker": "node dist/worker.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
