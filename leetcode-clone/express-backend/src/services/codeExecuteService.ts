@@ -10,14 +10,27 @@ interface ExecutionResult {
 }
 
 const BANNED_TOKENS = ["import os", "subprocess", "exec(", "eval(", "open("];
+/**
+ * const BANNED_PATTERNS = [
+  /\bimport\s+os\b/,
+  /\bsubprocess\b/,
+  /\bexec\s*\(/,
+  /\beval\s*\(/,
+  /\bopen\s*\(/,
+  /__import__\s*\(/
+];
 
+Better and safer alternatives : regex based scanning
+this would detect hidden import like - import os or _import-("os")
+  
+ */
 function isSafe(code: string): boolean {
   const lowered = code.toLowerCase();
   return !BANNED_TOKENS.some((t) => lowered.includes(t));
 }
 
 function createTempFile(code: string): string {
-  const filePath = path.join(os.tmpdir(), `exec_${Date.now()}.py`);
+  const filePath = path.join(os.tmpdir(), `exec_${Date.now()}.py`); //path: /tmp/exec_1693473189111.py
   fs.writeFileSync(filePath, code);
   return filePath;
 }
@@ -28,6 +41,7 @@ function cleanup(filePath: string) {
 
 export async function executePython(code: string): Promise<ExecutionResult> {
   return new Promise((resolve) => {
+
     if (!isSafe(code)) {
       return resolve({
         success: false,
@@ -37,7 +51,7 @@ export async function executePython(code: string): Promise<ExecutionResult> {
     }
 
     const filePath = createTempFile(code);
-    const start = Date.now();
+    const start = Date.now(); // start timestamp for measuring execution time
     const proc = spawn("python3", [filePath]);
 
     let stdout = "";
